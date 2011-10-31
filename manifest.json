@@ -1,0 +1,24 @@
+{
+  "name": "Campfire Text-to-Speech",
+  "version": "0.1",
+  "description": "Campfire Text-to-Speech uses your computer's native text-to-speech engine to read Campfire messages when your Campfire window or tab does not have focus.",
+  "minimum_chrome_version": "14",
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "icons": {"16": "images/icon16.png"},
+  "permissions": [
+    "tabs",
+    "tts",
+    "ttsEngine",
+    "*://*.campfirenow.com/room/*"
+  ],
+  "page_action": {
+    "default_icon": "images/icon16.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.campfirenow.com/room/*"],
+      "js":["scripts/content.js"]
+    }
+  ]
+}

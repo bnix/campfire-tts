@@ -1,0 +1,34 @@
+body {
+	font-family: helvetica, arial, sans-serif;
+	background-color: #E5E5E5;
+}
+h1 {
+	font-size: 1.5em;
+	margin: 0;
+}
+div.container {
+	border: 3px solid #DDD;
+	border-radius: 12px;
+	width: 32em;
+	padding: 1.5em 1.5em;
+	margin: 1.5em auto;
+	background-color: #FFF;
+}
+a, a:visited {
+	color: #2e8f28;
+}
+a.button {
+	display: block;
+	text-decoration: none;
+	background: url(../images/button.png) no-repeat;
+	height: 33px;
+}
+.button span{
+	line-height: 33px; 
+	display: block;
+	background-repeat: no-repeat;
+	font-weight: bold;
+	color: #fff;
+	padding: 0 18px;
+	text-shadow: 0 -1px 0 #374683;
+}

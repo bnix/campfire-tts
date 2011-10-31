@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Campfire Text-to-Speech Options</title>
+	<meta charset="utf-8">
+	<script src="scripts/options.js"></script>
+	<link rel="stylesheet" href="css/options.css" />
+</head>
+<body onload="options.initialize();">
+	<div class="container">
+	<h1>Campfire Text-to-Speech Options</h1>
+	<p>
+		<input type="checkbox" id="useWadsworth" />
+		<label for="useWadsworth">
+			Apply the <a href="http://www.urbandictionary.com/define.php?term=wadsworth+constant" target="_blank">Wadsworth Constant</a> to messages.
+		</label>
+	</p>
+	
+	<a href="#" class="button" onclick="options.saveOptions();">
+		<span>Save</span>
+	</a>
+	</div>
+</body>
+</html>
