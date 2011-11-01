@@ -1,9 +1,8 @@
-var campfireTts = {};
 // Holds state information and related functions
 campfireTts.background = {
 	initialize: function() {
-		this.enqueueMode = this.getSetting('enqueueMode', true);
-		this.useWadsworth = this.getSetting('useWadsworth', false);
+		this.enqueueMode = campfireTts.storage.getSetting('enqueueMode');
+		this.useWadsworth = campfireTts.storage.getSetting('useWadsworth');
 	},
 	wadsworth: function(text) {
 		// End of the first 30% of the text
@@ -13,21 +12,6 @@ campfireTts.background = {
 		// Nearest word boundry to the left
 		var lIndex = text.lastIndexOf(' ', text.slice(0, wIndex).lastIndexOf(' '));
 		return rIndex - wIndex < wIndex - lIndex ? text.slice(rIndex) : text.slice(lIndex);
-	},
-	getSetting: function(setting, defaultValue) {
-		var val = localStorage[setting]
-		if (val === null) localStorage[setting] = val = defaultValue;
-		return this.convertSetting(val, defaultValue);
-	},
-	convertSetting: function(str, target) {
-		switch(typeof(target)) {
-		case "boolean":
-			return str === 'false' ? false : true;
-		case "number":
-			return str.indexOf('.') !== -1 ? parseFloat(str) : parseInt(str);
-		default:
-			return str;
-		}
 	}
 };
 

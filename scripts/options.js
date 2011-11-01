@@ -4,7 +4,7 @@ options = {
 		for(var i = this.boolOptions.length - 1; i > -1; i--) {
 			var opt = this.boolOptions[i];
 			var checkbox = document.getElementById(opt);
-			checkbox.checked = localStorage[opt] === 'false' ? false : true;
+			checkbox.checked = campfireTts.storage.getSetting(opt);
 		}
 	},
 	saveOptions: function(event) {
