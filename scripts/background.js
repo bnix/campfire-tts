@@ -1,6 +1,7 @@
 // Holds state information and related functions
 campfireTts.background = {
 	initialize: function() {
+		this.voiceName = campfireTts.storage.getSetting('voiceName');
 		this.enqueueMode = campfireTts.storage.getSetting('enqueueMode');
 		this.useWadsworth = campfireTts.storage.getSetting('useWadsworth');
 	},
@@ -28,12 +29,10 @@ campfireTts.responder = {
 			if (window.focused && sender.tab.selected) return;
 			if (campfireTts.background.useWadsworth) {
 				utterance = campfireTts.background.wadsworth(utterance);
-				console.log("using wadsworth");
 			}
 			
 			var ttsOpts = {
-				'lang': 'en-US',
-				//'enqueue': campfireTts.background.enqueueMode
+				'voiceName': campfireTts.background.voiceName
 			};
 			chrome.tts.speak(utterance, ttsOpts, function() {
 				console.log(utterance);

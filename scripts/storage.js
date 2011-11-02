@@ -2,6 +2,7 @@ var campfireTts = {};
 // Local storage utility functions
 campfireTts.storage = {
 	defaults: {
+		'voiceName': "",
 		'useWadsworth': false,
 		'enqueueMode': true
 	},
