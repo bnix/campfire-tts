@@ -1,7 +1,7 @@
 {
   "name": "Campfire Text-to-Speech",
-  "version": "0.1",
-  "description": "Campfire Text-to-Speech uses your computer's native text-to-speech engine to read Campfire messages when your Campfire window or tab does not have focus.",
+  "version": "0.2",
+  "description": "Campfire Text-to-Speech reads Campfire messages aloud when your Campfire window or tab does not have focus.",
   "minimum_chrome_version": "14",
   "background_page": "background.html",
   "options_page": "options.html",
