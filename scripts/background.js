@@ -4,6 +4,7 @@ campfireTts.background = {
 		this.voiceName = campfireTts.storage.getSetting('voiceName');
 		this.enqueueMode = campfireTts.storage.getSetting('enqueueMode');
 		this.useWadsworth = campfireTts.storage.getSetting('useWadsworth');
+		this.ignoreLinks = campfireTts.storage.getSetting('ignoreLinks');
 	},
 	wadsworth: function(text) {
 		// End of the first 30% of the text
@@ -13,6 +14,10 @@ campfireTts.background = {
 		// Nearest word boundry to the left
 		var lIndex = text.lastIndexOf(' ', text.slice(0, wIndex).lastIndexOf(' '));
 		return rIndex - wIndex < wIndex - lIndex ? text.slice(rIndex) : text.slice(lIndex);
+	},
+	stripLinks: function(text) {
+		// Matches anchor tags Campfire creates
+		return text.replace(/(http|www)\S+/g, '');
 	}
 };
 
@@ -27,6 +32,9 @@ campfireTts.responder = {
 	speak: function(utterance, sender) {
 		chrome.windows.get(sender.tab.windowId, function(window){
 			if (window.focused && sender.tab.selected) return;
+			if (campfireTts.background.ignoreLinks) {
+				utterance = campfireTts.background.stripLinks(utterance)
+			}
 			if (campfireTts.background.useWadsworth) {
 				utterance = campfireTts.background.wadsworth(utterance);
 			}

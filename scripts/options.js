@@ -1,5 +1,5 @@
 options = {
-	boolSettings: ['useWadsworth'],
+	boolSettings: ['ignoreLinks', 'useWadsworth'],
 	initialize: function() {
 		for(var i = this.boolSettings.length - 1; i >= 0; i--) {
 			var setting = this.boolSettings[i];
@@ -21,7 +21,7 @@ options = {
 		});
 	},
 	saveOptions: function(event) {
-		for(var i = this.boolSettings.length - 1; i > -1; i--) {
+		for(var i = this.boolSettings.length - 1; i >= 0; i--) {
 			var opt = this.boolSettings[i];
 			localStorage[opt] = document.getElementById(opt).checked;
 		}
