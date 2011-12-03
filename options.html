@@ -10,22 +10,30 @@
 <body onload="options.initialize();">
 	<div class="container">
 	<h1>Campfire Text-to-Speech Options</h1>
-	<p>
+	<ul>
+	<li>
 		<input type="checkbox" id="ignoreLinks" />
 		<label for="ignoreLinks">
 			Ignore hyperlinks.
 		</label>
-	</p>
-	<p>
+	</li>
+	<li>
 		<input type="checkbox" id="useWadsworth" />
 		<label for="useWadsworth">
 			Apply the <a href="http://www.urbandictionary.com/define.php?term=wadsworth+constant" target="_blank">Wadsworth Constant</a> to messages.
 		</label>
-	</p>
-	<p>
+	</li>
+	<li>
 		<select id="voiceName"></select><label for="voiceName">Text-to-Speech engine</label>
-	</p>
-	
+	</li>
+	<li>
+		<h2>Custom Filters</h2>
+		<p class="note">
+			Custom regular expressions can be used to remove matched text.
+			</p>
+		<textarea id="userPatterns" wrap="off"></textarea>
+	</li>
+	</ul>
 	<a href="#" class="button" onclick="options.saveOptions();">
 		<span>Save</span>
 	</a>
