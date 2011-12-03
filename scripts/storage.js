@@ -5,7 +5,8 @@ campfireTts.storage = {
 		'voiceName': '',
 		'ignoreLinks': true,
 		'useWadsworth': false,
-		'enqueueMode': true
+		'enqueueMode': true,
+		'userPatterns': ''
 	},
 	getSetting: function(setting) {
 		var val = localStorage[setting];
