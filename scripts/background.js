@@ -5,13 +5,27 @@ campfireTts.background = {
 		this.enqueueMode = campfireTts.storage.getSetting('enqueueMode');
 		this.useWadsworth = campfireTts.storage.getSetting('useWadsworth');
 		this.ignoreLinks = campfireTts.storage.getSetting('ignoreLinks');
+		var patterns = campfireTts.storage.getSetting('userPatterns').split("\n");
+		this.userPatterns = new Array(patterns.length);
+		for (var i = patterns.length - 1; i >= 0; i--) {
+			this.userPatterns[i] = new RegExp(patterns[i], "g");
+		}
+	},
+	runFilters: function(text) {
+		if (this.useWadsworth) text = this.wadsworth(text);
+		if (this.ignoreLinks)  text = this.stripLinks(text);
+		var numRegExp = this.userPatterns.length;
+		for (var i = 0; i < numRegExp; i++) {
+			text = text.replace(this.userPatterns[i], '');
+		}
+		return text;
 	},
 	wadsworth: function(text) {
 		// End of the first 30% of the text
 		var wIndex = Math.round(text.length * .3);
-		// Nearest word boundry to the right
+		// Nearest word boundary to the right
 		var rIndex = text.indexOf(' ', wIndex) + 1;
-		// Nearest word boundry to the left
+		// Nearest word boundary to the left
 		var lIndex = text.lastIndexOf(' ', text.slice(0, wIndex).lastIndexOf(' '));
 		return rIndex - wIndex < wIndex - lIndex ? text.slice(rIndex) : text.slice(lIndex);
 	},
@@ -32,13 +46,9 @@ campfireTts.responder = {
 	speak: function(utterance, sender) {
 		chrome.windows.get(sender.tab.windowId, function(window){
 			if (window.focused && sender.tab.selected) return;
-			if (campfireTts.background.ignoreLinks) {
-				utterance = campfireTts.background.stripLinks(utterance)
-			}
-			if (campfireTts.background.useWadsworth) {
-				utterance = campfireTts.background.wadsworth(utterance);
-			}
-			
+
+			utterance = campfireTts.background.runFilters(utterance);
+
 			var ttsOpts = {
 				'voiceName': campfireTts.background.voiceName
 			};
